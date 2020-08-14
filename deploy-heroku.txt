@@ -15,6 +15,7 @@ comando: pip freeze > requirements.txt
 criar arquivo runtime.txt:
 python-3.8.2
 
+
 criar arquivo Procfile
 web: gunicorn crm.wsgi --log-file -
 (substituir crm pelo nome do diretório que contar o arquivo wsgi.py)
