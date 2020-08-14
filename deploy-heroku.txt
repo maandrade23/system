@@ -1,0 +1,34 @@
+Deploy no Heroku:
+
+Ir em:
+    https://dashboard.heroku.com/apps
+
+Criar um new app. App name vai ser a url
+
+Instalar o heroku cli
+
+comando: heroku login
+comando: heroku git:remote -a nomedoapp
+comando: pip install gunicorn whitenoise
+comando: pip freeze > requirements.txt
+
+criar arquivo runtime.txt:
+python-3.8.2
+
+criar arquivo Procfile
+web: gunicorn crm.wsgi --log-file -
+(substituir crm pelo nome do diretório que contar o arquivo wsgi.py)
+
+No settings:
+ALLOWED_HOSTS = ['custumer-management1.herokuapp.com', '127.0.0.1']
+
+No middleware:
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+Mudar debug para False
+
+No site Heroku, ir em Settings, Add buildpack e colocar Python
